@@ -40,7 +40,7 @@ export default function StickyInput() {
 
       if (res.ok) {
         const newChat = await res.json();
-        // Option 1: append to UI instantly
+        // @ts-ignore
         setChats((prev) => [newChat, ...prev]);
       }
     } catch (err) {
@@ -60,7 +60,7 @@ export default function StickyInput() {
         {chats.length === 0 ? (
           <p className="text-center text-gray-400 mt-10">No messages yet</p>
         ) : (
-          chats.map((chat) => (
+          chats.map((chat:any) => (
             <div
               key={chat.id}
               className={`p-2 my-1 rounded-lg max-w-[70%] ${
