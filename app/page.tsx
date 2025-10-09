@@ -5,6 +5,7 @@ import Posts from "@/components/Posts";
 import { usePostContext } from "./Providers/PostsProvider";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import Footer from "@/components/footer";
 import { 
   MessageCircleIcon, 
   HeartIcon, 
@@ -60,6 +61,7 @@ export default function Page() {
   // If not authenticated, show landing page
   return (
     <div className="min-h-[89vh] bg-gradient-to-br from-zinc-50 to-zinc-100 dark:from-zinc-900 dark:to-zinc-800">
+             <Footer addpost={[]} setIsLoading={false}  />
       {/* Hero Section */}
       <div className="relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
@@ -181,6 +183,7 @@ export default function Page() {
             <Button size="lg" variant="secondary" className="text-lg px-8 py-6 cursor-pointer">
               Create Your Account
             </Button>
+
           </Link>
         </div>
       </div>

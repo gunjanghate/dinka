@@ -73,7 +73,7 @@ export default function Post({
               />
           </div>
           <div className="flex-1 flex flex-col px-2 pb-2">
-            <div className="font-semibold text-lg text-zinc-700">
+            <div className="font-semibold text-lg text-zinc-700 dark:text-zinc-200">
               {author.name}
             </div>
             <div className="text-xs text-zinc-500">
