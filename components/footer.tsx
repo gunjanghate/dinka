@@ -14,10 +14,10 @@ export default function footer({ addpost, setIsLoading }: any) {
     if(session.data===null)return <></>
     if (!app.footer.includes(path || "/")) return <></>
     return (
-        <footer className="w-full fixed bottom-0 bg-zinc-100/80 backdrop-blur-md backdrop-saturate-[1.8] z-30 pb-3 pt-1">
+        <footer className="w-full fixed bottom-0 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md backdrop-saturate-[1.8] z-30 pb-3 pt-1 border-t border-gray-200 dark:border-zinc-700">
             <div className="flex w-full items-center justify-center surface-nav-element pointer-events-auto">
                 <div className="flex h-[3.375rem] cursor-pointer items-center gap-[10px] rounded-full px-[10px] sm:gap-[2vw]">
-                    <Link className={`relative flex  ${path === '/' ? "opacity-100" : "opacity-50"} h-full items-center gap-1.5 rounded-full px-4 hover:opacity-100 tablet:pl-3  `} href="/">
+                    <Link className={`relative flex  ${path === '/' ? "opacity-100" : "opacity-50"} h-full items-center gap-1.5 rounded-full px-4 hover:opacity-100 tablet:pl-3 text-gray-700 dark:text-gray-300`} href="/">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 28 28" className="h-7 w-7">
                             <path fill="currentColor" d="M11.778 17.507V12.66a.903.903 0 0 1 1.391-.764l3.75 2.423a.91.91 0 0 1 0 1.528l-3.75 2.424a.903.903 0 0 1-1.391-.764">
                             </path>
@@ -26,19 +26,19 @@ export default function footer({ addpost, setIsLoading }: any) {
                         </svg>
                         <span className="sr-only">Explore</span></Link>
 
-                    <Link className={`relative text-2xl flex h-full items-center gap-1.5 rounded-full px-4 ${path === '/people' ? "opacity-100" : "opacity-50"} hover:opacity-100 tablet:pl-3`} href="/people">
+                    <Link className={`relative text-2xl flex h-full items-center gap-1.5 rounded-full px-4 ${path === '/people' ? "opacity-100" : "opacity-50"} hover:opacity-100 tablet:pl-3 text-gray-700 dark:text-gray-300`} href="/people">
                         <UsersRound strokeWidth={2.5} /><span className="sr-only">People</span></Link>
-                    <div className="relative flex h-full items-center gap-1.5 rounded-full opacity-50 hover:opacity-100 tablet:pl-3 px-1.5 py-2">
+                    <div className="relative flex h-full items-center gap-1.5 rounded-full opacity-50 hover:opacity-100 tablet:pl-3 px-1.5 py-2 text-gray-700 dark:text-gray-300">
                         <CreatePost addpost={addpost} setIsLoading={setIsLoading} />
                     </div>
                     
-                    <Link className={`relative text-2xl flex h-full items-center gap-1.5 rounded-full px-4 ${path === '/chats' ? "opacity-100" : "opacity-50"} hover:opacity-100 tablet:pl-3`} href="/chats">
+                    <Link className={`relative text-2xl flex h-full items-center gap-1.5 rounded-full px-4 ${path === '/chats' ? "opacity-100" : "opacity-50"} hover:opacity-100 tablet:pl-3 text-gray-700 dark:text-gray-300`} href="/chats">
                         <MessageCircleIcon strokeWidth={2.5} /><span className="sr-only">Chats</span></Link>
                     <Link href={"/profile"}>
                         <button className="relative flex h-full items-center gap-1.5 rounded-full px-4 hover:opacity-100 tablet:pl-3 opacity-100">
-                            <div className={path === '/profile' ? "opacity-100" : "opacity-50"} >
+                            <div className={`${path === '/profile' ? "opacity-100" : "opacity-50"} text-gray-700 dark:text-gray-300`} >
                                 <div className="flex items-center" id="radix-:r9g:" aria-haspopup="menu" aria-expanded="false" data-state="closed">
-                                    <img src="https://lh3.googleusercontent.com/a/ACg8ocLgpKdvLVOpp8SAZuTsTAb3O-MWAPgYOnESGbYVWwWs9ce7j1P8=s96-c" alt="" className="rounded-full h-6 w-6" /></div>
+                                    <img src="https://lh3.googleusercontent.com/a/ACg8ocLgpKdvLVOpp8SAZuTsTAb3O-MWAPgYOnESGbYVWwWs9ce7j1P8=s96-c" alt="" className="rounded-full h-6 w-6 ring-2 ring-transparent dark:ring-zinc-600" /></div>
                             </div></button>
                     </Link>
                 </div>
