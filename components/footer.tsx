@@ -38,7 +38,7 @@ export default function footer({ addpost, setIsLoading }: any) {
                         <button className="relative flex h-full items-center gap-1.5 rounded-full px-4 hover:opacity-100 tablet:pl-3 opacity-100">
                             <div className={`${path === '/profile' ? "opacity-100" : "opacity-50"} text-gray-700 dark:text-gray-300`} >
                                 <div className="flex items-center" id="radix-:r9g:" aria-haspopup="menu" aria-expanded="false" data-state="closed">
-                                    <img src="https://lh3.googleusercontent.com/a/ACg8ocLgpKdvLVOpp8SAZuTsTAb3O-MWAPgYOnESGbYVWwWs9ce7j1P8=s96-c" alt="" className="rounded-full h-6 w-6 ring-2 ring-transparent dark:ring-zinc-600" /></div>
+                                    <img src={session.data?.user?.image || "https://imgs.search.brave.com/XLM6WQZOOjg4USteTMmA56CbGwKhBGOcLHTpbDno-xU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMjE3/MTM4MjYzMy92ZWN0/b3IvdXNlci1wcm9m/aWxlLWljb24tYW5v/bnltb3VzLXBlcnNv/bi1zeW1ib2wtYmxh/bmstYXZhdGFyLWdy/YXBoaWMtdmVjdG9y/LWlsbHVzdHJhdGlv/bi5qcGc_cz02MTJ4/NjEyJnc9MCZrPTIw/JmM9WndPRjZOZk9S/MHpoWUM0NHhPWDA2/cnlJUEFVaER2QWFq/clBzYVo2djEtdz0"} alt="" className="rounded-full h-6 w-6 ring-2 ring-transparent dark:ring-zinc-600 scale-[1.2]" /></div>
                             </div></button>
                     </Link>
                 </div>

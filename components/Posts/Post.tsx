@@ -56,7 +56,7 @@ export default function Post({
   }[visibility];
   console.log(author)
   return (
-    <div className="rounded-3xl mb-5 border-zinc-200 border p-4 w-full max-w-xl mx-auto space-y-2 transition-all duration-300 bg-background shadow-xs dark:bg-input/30 dark:border-input">
+    <div className="rounded-xl mb-5   p-4 w-full max-w-xl mx-auto space-y-2 transition-all duration-300 bg-background border dark:bg-input/30 dark:border-input">
       <div className="flex items-start justify-between">
           <Link href={`/profile?id=${authorId}`}>
         <div className="w-max flex items-center">
@@ -129,8 +129,8 @@ export default function Post({
           className={`${
             isLiked
               ? "text-white bg-[linear-gradient(45deg,red,#ff00bc)]"
-              : "text-rose-500 bg-zinc-100" 
-          } transition  shadow-xl  cursor-pointer active:scale-105 gap-1 py-3 px-6 rounded-full w-1/3 flex justify-center items-center`}
+              : "text-rose-500   bg-zinc-100" 
+          } transition   cursor-pointer active:scale-105 gap-1 py-3 px-6 rounded-full w-1/3 flex justify-center items-center`}
         >
           <Heart fill="white" className="w-5 h-5" strokeWidth={2.4} />
           <span className="text-sm">{likes ?likes :""}</span>
@@ -138,7 +138,7 @@ export default function Post({
 
         <Link
           href={`/postid/${id}`}
-          className="text-blue-500 shadow-md active:text-white active:bg-[linear-gradient(345deg,cyan,blue)] transition bg-zinc-100 py-3 px-6 rounded-full w-1/3 flex justify-center"
+          className="text-blue-500  active:text-white active:bg-[linear-gradient(345deg,cyan,blue)] transition bg-zinc-100 py-3 px-6 rounded-full w-1/3 flex justify-center"
         >
           <MessageCircle fill={"white"} className="w-5 h-5" strokeWidth={2.4} />
         </Link>
@@ -147,7 +147,7 @@ export default function Post({
           onClick={() => share(id)}
           type="button"
           aria-label="Share"
-          className="text-purple-500 shadow-md active:text-white active:bg-[linear-gradient(345deg,violet,purple)]  transition bg-zinc-100 py-3 px-6 rounded-full w-1/3 flex justify-center"
+          className="text-purple-500  active:text-white active:bg-[linear-gradient(345deg,violet,purple)]  transition bg-zinc-100 py-3 px-6 rounded-full w-1/3 flex justify-center"
         >
           <Share2 className="w-5 h-5" strokeWidth={2.4} />
         </button>

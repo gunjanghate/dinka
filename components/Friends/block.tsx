@@ -27,8 +27,8 @@ export default function PersonCard({
   
 }: Props) {
   return (
-    <div className="border rounded-2xl p-4 max-w-xl mx-auto">
-      <div className="flex gap-3 items-center">
+    <div className="border rounded-2xl p-4 max-w-xl mx-3">
+      <div className="flex gap-3 items-center ">
         <Link href={`/profile?id=${person.id}`}>
         <div className="w-10 h-10 rounded-full relative overflow-hidden">
           <Image src={person.pic} alt="" fill className="object-cover" />
@@ -38,9 +38,9 @@ export default function PersonCard({
         <div className="font-medium">{person.name}</div>
         </Link>
       </div>
-      <div className="flex justify-end gap-2 mt-3">
+      <div className="flex justify-end gap-2 mt-3 ">
         {primaryActionLabel && (
-          <Badge className="cursor-pointer" onClick={onPrimaryClick}>
+          <Badge className="cursor-pointer text-md" onClick={onPrimaryClick}>
             {primaryActionLabel}
           </Badge>
         )}

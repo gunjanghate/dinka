@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 export default function StickyInput() {
@@ -7,8 +7,10 @@ export default function StickyInput() {
   const toId = searchParams?.get("id");
 
   const [message, setMessage] = useState("");
-  const [chats, setChats] = useState([]);
+  const [chats, setChats] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const chatContainerRef = useRef<HTMLDivElement>(null);
 
   // Fetch all chats
   useEffect(() => {
@@ -27,6 +29,13 @@ export default function StickyInput() {
     })();
   }, [toId]);
 
+  // Scroll to bottom whenever chats update
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  }, [chats]);
+
   // Handle message sending
   const handleSend = async () => {
     if (!message.trim()) return;
@@ -41,7 +50,7 @@ export default function StickyInput() {
       if (res.ok) {
         const newChat = await res.json();
         // @ts-ignore
-        setChats((prev) => [newChat, ...prev]);
+        setChats((prev) => [...prev, newChat.message]);
       }
     } catch (err) {
       console.error("Error sending message:", err);
@@ -50,17 +59,19 @@ export default function StickyInput() {
     setMessage("");
   };
 
-  // Show loading state
   if (loading) return <p className="p-4 text-gray-500">Loading chats...</p>;
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
       {/* CHAT LIST */}
-      <div className="flex-1 overflow-y-auto flex flex-col-reverse p-3 pb-20">
+      <div
+        ref={chatContainerRef}
+        className="flex-1 overflow-y-auto flex flex-col p-3 pb-20"
+      >
         {chats.length === 0 ? (
           <p className="text-center text-gray-400 mt-10">No messages yet</p>
         ) : (
-          chats.map((chat:any) => (
+          chats.map((chat: any) => (
             <div
               key={chat.id}
               className={`p-2 my-1 rounded-lg max-w-[70%] ${

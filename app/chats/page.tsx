@@ -1,15 +1,89 @@
-"use client"
-import React, { useEffect, useState } from 'react'
+"use client";
 
-export default function page() {
+import React, { useEffect, useState } from "react";
+import {  Loader2 } from "lucide-react"; // spinner icon
+import Link from "next/link";
+import { useSession } from "next-auth/react"
+
+export default function Page() {
+  const [peoples, setPeoples] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const session = useSession();
+  console.log(session)
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await fetch("/api/v1/contacts");
+        const data = await res.json();
+        if (!res.ok) throw new Error("Failed to fetch");
+        setPeoples(data.data || []); // backend returns { data: [...] }
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, []);
+
+  if (loading)
+    return (
+      <div className="flex items-center justify-center h-screen text-zinc-600">
+        <Loader2 className="animate-spin w-6 h-6 mr-2" /> Loading chats...
+      </div>
+    );
+
+  if (!peoples.length)
+    return (
+      <div className="flex flex-col items-center justify-center h-screen text-zinc-500">
+        <p className="text-lg font-medium">No chats yet 😅</p>
+        <p className="text-sm text-zinc-400">Start a conversation to see it here.</p>
+      </div>
+    );
 
   return (
-    <div>
-      <div className='px-6 text-3xl font-bold text-zinc-600'>
-        Chats
+    <div className="max-w-2xl mx-auto py-6 px-4">
+      <h1 className="text-3xl font-bold text-zinc-700 mb-6">Chats</h1>
+
+      <div className="space-y-3">
+        {peoples.map((chat: any) => {
+          //@ts-ignore
+          const contact =   session.data.user.id !== chat.toId
+              ? chat.to
+              : chat.from;
+
+          return (
+            <Link href={`/chat?id=${contact.id}`}>
+          
+            <div
+              key={chat.id}
+              className="flex items-center gap-4 p-3 mb-3 rounded-2xl hover:bg-zinc-100 transition-all cursor-pointer border border-zinc-200"
+              >
+              <img
+                src={contact?.pic || "/default-avatar.png"}
+                alt={contact?.name || "User"}
+                className="w-12 h-12 rounded-full object-cover border border-zinc-300"
+                />
+              <div className="flex-1">
+                <div className="flex justify-between items-center">
+                  <h2 className="text-lg font-semibold text-zinc-800">
+                    {contact?.name || contact?.username || "Unknown"}
+                  </h2>
+                  <p className="text-xs text-zinc-400">
+                    {new Date(chat.createdAt).toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </p>
+                </div>
+                <p className="text-sm text-zinc-500 truncate max-w-xs">
+                  {chat.message || (chat.mediaUrl ? "📎 Media" : "No message")}
+                </p>
+              </div>
+            </div>
+          </Link>
+          );
+        })}
       </div>
-
-
     </div>
-  )
+  );
 }
