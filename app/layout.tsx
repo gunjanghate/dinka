@@ -51,7 +51,7 @@ export default function RootLayout({
           <SessionProvider>
             <div className="w-screen min-h-screen relative">
               <NavBar />
-              <div className="py-16" />
+
               <PostProvider>
                 <SocketProvider>{children}</SocketProvider>
               </PostProvider>
@@ -59,7 +59,7 @@ export default function RootLayout({
           </SessionProvider>
         </ThemeProvider>
 
-      
+
       </body>
     </html>
   );
